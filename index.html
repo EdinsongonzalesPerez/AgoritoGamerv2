@@ -30,7 +30,7 @@
 
         body {
             font-family: 'Maven Pro', sans-serif;
-            background-color: #f4f7eb; /* Tono muy suave derivado del verde */
+            background-color: #f4f7eb;
             margin: 0;
             overflow-x: hidden;
         }
@@ -163,7 +163,7 @@
     <!-- Navbar -->
     <nav class="bg-white shadow-md p-3 flex justify-between items-center sticky top-0 z-40 border-b-4 border-agora-green">
         <div class="flex items-center gap-4">
-            <img src="https://ui-avatars.com/api/?name=Estudiante&background=8DAA25&color=fff&size=150" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-agora-green object-cover shadow-sm">
+            <img src="https://ui-avatars.com/api/?name=Estudiante&background=8DAA25&color=fff&size=150" alt="Avatar" id="nav-avatar" class="w-12 h-12 rounded-full border-2 border-agora-green object-cover shadow-sm">
             <div>
                 <h2 id="nombre-estudiante-display" class="title-font text-xl text-agora-olive font-bold">Estudiante</h2>
                 <p id="info-estudiante" class="text-xs text-gray-500 font-bold uppercase">Sede | Grado</p>
@@ -191,7 +191,7 @@
                 </div>
                 
                 <div class="relative z-10 flex items-center gap-4 mb-4">
-                    <img src="https://ui-avatars.com/api/?name=Campeon&background=F7931E&color=fff&size=150" alt="Agorito Campeón" class="w-16 h-16 rounded-full border-2 border-white shadow-lg object-cover bg-white">
+                    <img src="https://ui-avatars.com/api/?name=Campeon&background=F7931E&color=fff&size=150" id="podio-avatar" alt="Campeón" class="w-16 h-16 rounded-full border-2 border-white shadow-lg object-cover bg-white">
                     <div>
                         <h3 class="title-font text-2xl drop-shadow-md">Salón de la Fama</h3>
                         <p class="text-sm font-semibold opacity-90">¡Intenta superar esta racha!</p>
@@ -204,7 +204,7 @@
                             <i class="fas fa-crown text-yellow-300 mr-2 animate-bounce"></i> <span id="podio-nombre">Edinson</span>
                         </span>
                         <span class="bg-white text-agora-orange px-4 py-1.5 rounded-full font-bold title-font text-lg shadow-sm whitespace-nowrap">
-                            <span id="podio-racha">100</span> pts
+                            <span id="podio-racha">150</span> pts
                         </span>
                     </div>
                     <p class="text-sm text-white/90 font-medium ml-8"><i class="fas fa-map-marker-alt mr-1"></i> <span id="podio-sede">Chanchamayo</span></p>
@@ -215,7 +215,7 @@
             <div>
                 <h3 class="title-font text-2xl text-agora-green mb-4"><i class="fas fa-book-open"></i> Tus Cursos</h3>
                 
-                <button onclick="mostrarTemario('aritmetica')" class="w-full text-left bg-white rounded-2xl p-4 shadow-sm hover:shadow-md border-l-8 border-agora-green transition-all transform hover:-translate-y-1 mb-4 group">
+                <button onclick="mostrarTemario('aritmetica')" id="btn-curso-aritmetica" class="w-full text-left bg-white rounded-2xl p-4 shadow-sm hover:shadow-md border-l-8 border-agora-green transition-all transform hover:-translate-y-1 mb-4 group ring-2 ring-transparent focus:ring-agora-green">
                     <div class="flex justify-between items-center">
                         <div>
                             <h4 class="font-bold text-lg text-gray-800 group-hover:text-agora-green transition-colors">Aritmética</h4>
@@ -225,7 +225,7 @@
                     </div>
                 </button>
 
-                <button onclick="mostrarTemario('algebra')" class="w-full text-left bg-white rounded-2xl p-4 shadow-sm hover:shadow-md border-l-8 border-agora-olive transition-all transform hover:-translate-y-1 mb-4 group">
+                <button onclick="mostrarTemario('algebra')" id="btn-curso-algebra" class="w-full text-left bg-white rounded-2xl p-4 shadow-sm hover:shadow-md border-l-8 border-agora-olive transition-all transform hover:-translate-y-1 mb-4 group ring-2 ring-transparent focus:ring-agora-olive">
                     <div class="flex justify-between items-center">
                         <div>
                             <h4 class="font-bold text-lg text-gray-800 group-hover:text-agora-olive transition-colors">Álgebra</h4>
@@ -250,7 +250,7 @@
 
         <!-- Panel de Temario / Misiones -->
         <div class="w-full md:w-2/3">
-            <div class="bg-white rounded-3xl shadow-lg p-6 h-full border-t-8 border-agora-green relative overflow-hidden flex flex-col">
+            <div class="bg-white rounded-3xl shadow-lg p-6 h-full border-t-8 border-agora-green relative overflow-hidden flex flex-col min-h-[400px]">
                 <!-- Marca de agua sutil -->
                 <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-5 w-96 h-96 pointer-events-none">
                     <img src="https://placehold.co/400x400/ffffff/8DAA25?text=AGORA+PLAY" class="w-full h-full object-contain filter grayscale">
@@ -267,8 +267,10 @@
                 <!-- Contenedor del Temario Activo -->
                 <div id="temario-contenido" class="hidden relative z-10 flex-grow flex flex-col">
                     <div class="flex justify-between items-center mb-6 border-b-2 border-gray-100 pb-4">
-                        <h3 id="temario-titulo" class="title-font text-4xl">Curso</h3>
-                        <span id="temario-icono" class="text-4xl"></span>
+                        <div class="flex items-center gap-3">
+                            <span id="temario-icono" class="text-4xl"></span>
+                            <h3 id="temario-titulo" class="title-font text-4xl">Curso</h3>
+                        </div>
                     </div>
 
                     <div class="space-y-6 flex-grow overflow-y-auto pr-2 custom-scrollbar" id="lista-misiones" style="max-height: 65vh;">
@@ -320,7 +322,7 @@
             </div>
         </div>
 
-        <button onclick="iniciarJuego()" class="bg-agora-green hover:bg-[#7a941e] text-white title-font text-3xl py-4 px-12 rounded-full shadow-[0_6px_0_#5a6e15] active:shadow-[0_0px_0_#5a6e15] active:translate-y-[6px] transform transition-all tracking-wide">
+        <button onclick="iniciarJuegoLoop()" class="bg-agora-green hover:bg-[#7a941e] text-white title-font text-3xl py-4 px-12 rounded-full shadow-[0_6px_0_#5a6e15] active:shadow-[0_0px_0_#5a6e15] active:translate-y-[6px] transform transition-all tracking-wide">
             ¡INICIAR MISIÓN!
         </button>
     </div>
@@ -330,7 +332,7 @@
         
         <!-- Contenedor Dinámico para Récord o Fallo -->
         <div id="game-over-icon" class="mb-6 floating">
-            <img src="https://ui-avatars.com/api/?name=Campeon&background=F7931E&color=fff&size=150" id="game-over-img" alt="Agorito Fin" class="h-48 w-48 object-cover rounded-full border-4 border-agora-orange shadow-[0_0_40px_rgba(247,147,30,0.6)]">
+            <img src="https://ui-avatars.com/api/?name=Fin&background=F7931E&color=fff&size=150" id="game-over-img" alt="Agorito Fin" class="h-48 w-48 object-cover rounded-full border-4 border-agora-orange shadow-[0_0_40px_rgba(247,147,30,0.6)]">
         </div>
         
         <h2 id="game-over-title" class="title-font text-6xl mb-2 text-agora-orange drop-shadow-lg">¡Misión Terminada!</h2>
@@ -343,7 +345,7 @@
         <p id="high-score-msg" class="text-2xl text-yellow-400 font-bold mb-8 h-8 drop-shadow-md"></p>
         
         <div class="flex gap-4">
-            <button onclick="prepararJuego()" class="bg-agora-green hover:bg-[#7a941e] text-white font-bold text-xl py-3 px-8 rounded-xl transition-colors shadow-[0_5px_0_#5a6e15] active:translate-y-[5px] active:shadow-none flex items-center">
+            <button onclick="prepararJuegoUI()" class="bg-agora-green hover:bg-[#7a941e] text-white font-bold text-xl py-3 px-8 rounded-xl transition-colors shadow-[0_5px_0_#5a6e15] active:translate-y-[5px] active:shadow-none flex items-center">
                 <i class="fas fa-redo mr-2"></i> Reintentar
             </button>
             <button onclick="salirJuego()" class="bg-gray-600 hover:bg-gray-700 text-white font-bold text-xl py-3 px-8 rounded-xl transition-colors shadow-[0_5px_0_#4b5563] active:translate-y-[5px] active:shadow-none">
@@ -358,7 +360,7 @@
         <canvas id="gameCanvas" width="800" height="600" class="w-full aspect-[4/3] bg-transparent border-4 border-gray-800/50"></canvas>
         
         <!-- Botonera de respuestas -->
-        <div id="answer-buttons" class="absolute bottom-4 w-full px-4 md:px-12 flex justify-center gap-3 md:gap-6 z-30 opacity-0 transition-opacity duration-300 pointer-events-none">
+        <div id="answer-buttons" class="absolute bottom-4 w-full px-4 md:px-12 flex justify-center flex-wrap gap-3 md:gap-6 z-30 opacity-0 transition-opacity duration-300 pointer-events-none">
             <!-- Botones generados por JS -->
         </div>
     </div>
@@ -369,14 +371,14 @@
     const temarioData = {
         aritmetica: {
             titulo: "Aritmética",
-            icono: '<i class="fas fa-calculator"></i>',
-            colorTheme: 'green',
+            icono: '<i class="fas fa-calculator text-agora-green"></i>',
+            colorTheme: 'agora-green',
             bloques: [
                 {
                     nombre: "Bimestre I",
                     temas: [
                         { id: 'ar_1_1', nombre: "Adición y Sustracción", jugable: true },
-                        { id: 'ar_1_2', nombre: "Multiplicación y División", jugable: false },
+                        { id: 'ar_1_2', nombre: "Multiplicación y División", jugable: true },
                         { id: 'ar_1_3', nombre: "Operaciones Combinadas", jugable: false }
                     ]
                 },
@@ -391,8 +393,8 @@
         },
         algebra: {
             titulo: "Álgebra",
-            icono: '<i class="fas fa-square-root-variable"></i>',
-            colorTheme: 'olive',
+            icono: '<i class="fas fa-square-root-variable text-agora-olive"></i>',
+            colorTheme: 'agora-olive',
             bloques: [
                 {
                     nombre: "Bimestre I",
@@ -451,17 +453,11 @@
             // Actualizar datos en Dashboard
             document.getElementById('nombre-estudiante-display').textContent = `¡Hola, ${usuarioActual.nombre}!`;
             document.getElementById('info-estudiante').textContent = `${usuarioActual.sede} | ${usuarioActual.grado}`;
-            document.querySelector('#screen-dashboard nav img[alt="Avatar"]').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(usuarioActual.nombre)}&background=8DAA25&color=fff&size=150`;
+            document.getElementById('nav-avatar').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(usuarioActual.nombre)}&background=8DAA25&color=fff&size=150`;
             
-            actualizarPodioUI();
+            actualizarUIHighscore();
             cambiarPantalla('screen-dashboard');
         }
-    }
-
-    function actualizarPodioUI() {
-        document.getElementById('podio-nombre').textContent = recordActual.nombre;
-        document.getElementById('podio-racha').textContent = recordActual.puntaje;
-        document.getElementById('podio-sede').textContent = recordActual.sede;
     }
 
     function cerrarModal() {
@@ -470,390 +466,578 @@
     }
 
     function volverInicio() {
-        cambiarPantalla('screen-login');
+        // Reset inputs
+        document.getElementById('nombre-input').value = '';
+        document.getElementById('sede-select').value = '';
+        document.getElementById('grado-select').value = '';
+        
+        // Reset dashboard state
         document.getElementById('temario-vacio').classList.remove('hidden');
         document.getElementById('temario-contenido').classList.add('hidden');
+        document.querySelectorAll('button[id^="btn-curso-"]').forEach(btn => btn.classList.remove('ring-2'));
+        
+        cambiarPantalla('screen-login');
     }
 
-    function mostrarTemario(cursoId) {
-        const curso = temarioData[cursoId];
-        if(!curso) return;
+    function actualizarUIHighscore() {
+        document.getElementById('podio-nombre').textContent = recordActual.nombre;
+        document.getElementById('podio-racha').textContent = recordActual.puntaje;
+        document.getElementById('podio-sede').textContent = recordActual.sede;
+        document.getElementById('podio-avatar').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(recordActual.nombre)}&background=F7931E&color=fff&size=150`;
+    }
 
+    function mostrarTemario(cursoKey) {
+        const curso = temarioData[cursoKey];
+        if (!curso) return;
+
+        // Visual selection
+        document.querySelectorAll('button[id^="btn-curso-"]').forEach(btn => btn.classList.remove('ring-2'));
+        document.getElementById(`btn-curso-${cursoKey}`).classList.add('ring-2');
+
+        // Toggle visibility
         document.getElementById('temario-vacio').classList.add('hidden');
-        document.getElementById('temario-contenido').classList.remove('hidden');
-        
-        // Estilos dinámicos basados en el curso
-        const tituloEl = document.getElementById('temario-titulo');
-        const iconoEl = document.getElementById('temario-icono');
-        
-        tituloEl.textContent = curso.titulo;
-        iconoEl.innerHTML = curso.icono;
+        const temarioContenido = document.getElementById('temario-contenido');
+        temarioContenido.classList.remove('hidden');
 
-        let primaryColorClass = curso.colorTheme === 'green' ? 'text-agora-green' : 'text-agora-olive';
-        let bgBadgeClass = curso.colorTheme === 'green' ? 'bg-agora-green' : 'bg-agora-olive';
-        let borderClass = curso.colorTheme === 'green' ? 'border-agora-green' : 'border-agora-olive';
-        
-        tituloEl.className = `title-font text-4xl font-bold ${primaryColorClass}`;
-        iconoEl.className = `text-4xl ${primaryColorClass}`;
+        // Set Headers
+        document.getElementById('temario-titulo').textContent = curso.titulo;
+        document.getElementById('temario-icono').innerHTML = curso.icono;
 
-        const contenedor = document.getElementById('lista-misiones');
-        contenedor.innerHTML = ''; 
+        // Mantener las clases base del contenedor y actualizar el borde superior según el tema
+        temarioContenido.className = `relative z-10 flex-grow flex flex-col border-t-8 border-${curso.colorTheme}`;
+
+        // Build list
+        const lista = document.getElementById('lista-misiones');
+        lista.innerHTML = '';
 
         curso.bloques.forEach(bloque => {
             const bloqueDiv = document.createElement('div');
-            bloqueDiv.className = 'bg-gray-50 rounded-2xl p-5 border border-gray-200 shadow-sm';
+            bloqueDiv.className = 'mb-6';
             
-            let temasHtml = '';
+            const bloqueTitle = document.createElement('h4');
+            bloqueTitle.className = 'text-xl font-bold text-gray-700 mb-3 border-b-2 border-gray-100 pb-1';
+            bloqueTitle.textContent = bloque.nombre;
+            bloqueDiv.appendChild(bloqueTitle);
+
+            const temasGrid = document.createElement('div');
+            temasGrid.className = 'grid grid-cols-1 md:grid-cols-2 gap-4';
+
             bloque.temas.forEach(tema => {
+                const btn = document.createElement('button');
+                
                 if (tema.jugable) {
-                    temasHtml += `
-                        <button onclick="prepararJuego('${cursoId}', '${tema.id}', '${tema.nombre}')" class="w-full flex items-center justify-between p-4 mt-3 bg-white rounded-xl shadow-sm border-2 border-transparent hover:${borderClass} hover:shadow-md transition-all group">
-                            <div class="flex items-center gap-4">
-                                <div class="bg-gray-100 group-hover:bg-gray-200 p-3 rounded-full ${primaryColorClass} group-hover:scale-110 transition-transform">
-                                    <i class="fas fa-gamepad text-lg"></i>
-                                </div>
-                                <span class="font-bold text-gray-700 text-lg text-left">${tema.nombre}</span>
-                            </div>
-                            <span class="${bgBadgeClass} text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-sm">Jugar</span>
-                        </button>
+                    btn.className = `flex justify-between items-center bg-white p-4 rounded-xl border-2 border-green-200 hover:border-agora-green hover:shadow-md transition-all text-left group`;
+                    btn.onclick = () => prepararMision(tema.id, tema.nombre);
+                    btn.innerHTML = `
+                        <span class="font-semibold text-gray-800 group-hover:text-agora-green">${tema.nombre}</span>
+                        <div class="bg-green-100 p-2 rounded-full group-hover:bg-agora-green group-hover:text-white transition-colors text-agora-green">
+                            <i class="fas fa-play ml-1"></i>
+                        </div>
                     `;
                 } else {
-                    temasHtml += `
-                        <div class="w-full flex items-center justify-between p-4 mt-3 bg-white rounded-xl border border-gray-100 opacity-60">
-                            <div class="flex items-center gap-4">
-                                <div class="bg-gray-100 p-3 rounded-full text-gray-400">
-                                    <i class="fas fa-lock text-lg"></i>
-                                </div>
-                                <span class="text-gray-500 font-medium text-lg text-left">${tema.nombre}</span>
-                            </div>
+                    btn.className = `flex justify-between items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200 text-left cursor-not-allowed opacity-70`;
+                    btn.innerHTML = `
+                        <span class="font-semibold text-gray-500">${tema.nombre}</span>
+                        <div class="bg-gray-200 p-2 rounded-full text-gray-400">
+                            <i class="fas fa-lock"></i>
                         </div>
                     `;
                 }
+                temasGrid.appendChild(btn);
             });
 
-            bloqueDiv.innerHTML = `
-                <h4 class="font-bold text-gray-800 mb-3 border-b-2 border-gray-200 pb-2 text-xl"><i class="fas fa-folder-open text-gray-400 mr-2"></i> ${bloque.nombre}</h4>
-                <div class="space-y-3">
-                    ${temasHtml}
-                </div>
-            `;
-            contenedor.appendChild(bloqueDiv);
+            bloqueDiv.appendChild(temasGrid);
+            lista.appendChild(bloqueDiv);
         });
     }
 
-    // --- MOTOR DEL JUEGO ---
+    // --- VARIABLES DEL JUEGO (CANVAS) ---
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
-    let gameLoopId;
+    let animationId;
     let isPlaying = false;
     
-    // Variables de estado del juego
+    // Estado del juego
     let score = 0;
     let lives = 3;
-    let meteoritos = [];
+    let asteroides = [];
     let particulas = [];
-    let respuestaCorrecta = 0;
-    let opcionesActuales = [];
+    let estrellas = [];
     
-    // Configuración Base (Nave)
-    const playerBase = { x: canvas.width / 2, y: canvas.height - 40, width: 80, height: 40 };
+    // Tema seleccionado actualmente
+    let temaActualId = '';
+    
+    // Configuración
+    const ASTEROID_SPEED_BASE = 0.5;
+    let currentSpeed = ASTEROID_SPEED_BASE;
+    let spawnTimer = 0;
+    const SPAWN_RATE_BASE = 180; // frames
+    let currentSpawnRate = SPAWN_RATE_BASE;
 
-    function prepararJuego(cursoId, temaId, temaNombre) {
-        // En un caso real se cargaría la lógica según el curso. 
-        // Aquí usamos Adición y Sustracción básica.
-        
-        document.getElementById('game-title-hud').textContent = "Misión: " + (temaNombre || 'Aritmética');
-        document.getElementById('game-intro').classList.remove('hidden');
+    // Nave del jugador (Base)
+    const nave = {
+        x: canvas.width / 2,
+        y: canvas.height - 40,
+        width: 60,
+        height: 40
+    };
+
+    function prepararMision(idTema, nombreTema) {
+        temaActualId = idTema;
+        document.getElementById('game-title-hud').textContent = nombreTema;
+        cambiarPantalla('screen-game');
+        prepararJuegoUI();
+    }
+
+    function prepararJuegoUI() {
         document.getElementById('game-over').classList.add('hidden');
+        document.getElementById('game-intro').classList.remove('hidden');
+        document.getElementById('answer-buttons').classList.remove('opacity-100', 'pointer-events-auto');
         document.getElementById('answer-buttons').classList.add('opacity-0', 'pointer-events-none');
         
+        // Reset estado para dibujar la primera pantalla estática
         score = 0;
         lives = 3;
-        actualizarHUD();
-        dibujarEscenaEstatica(); 
-        
-        cambiarPantalla('screen-game');
-    }
-
-    function iniciarJuego() {
-        document.getElementById('game-intro').classList.add('hidden');
-        document.getElementById('answer-buttons').classList.remove('opacity-0', 'pointer-events-none');
-        
-        score = 0;
-        lives = 3;
-        meteoritos = [];
+        asteroides = [];
         particulas = [];
         actualizarHUD();
-        isPlaying = true;
         
-        generarProblema();
-        
-        if(gameLoopId) cancelAnimationFrame(gameLoopId);
-        gameLoop();
-    }
+        // Generar estrellas iniciales
+        estrellas = [];
+        for(let i=0; i<100; i++) {
+            estrellas.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2,
+                speed: Math.random() * 0.5 + 0.1
+            });
+        }
 
-    function salirJuego() {
-        isPlaying = false;
-        if(gameLoopId) cancelAnimationFrame(gameLoopId);
-        cambiarPantalla('screen-dashboard');
+        dibujarEscenaEstatica();
     }
 
     function actualizarHUD() {
         document.getElementById('game-score').textContent = score;
         document.getElementById('game-lives').textContent = lives;
-        if(lives <= 0 && isPlaying) {
-            terminarJuego();
-        }
     }
 
-    function terminarJuego() {
+    function iniciarJuegoLoop() {
+        document.getElementById('game-intro').classList.add('hidden');
+        document.getElementById('answer-buttons').classList.remove('opacity-0', 'pointer-events-none');
+        document.getElementById('answer-buttons').classList.add('opacity-100', 'pointer-events-auto');
+        
+        score = 0;
+        lives = 3;
+        asteroides = [];
+        particulas = [];
+        currentSpeed = ASTEROID_SPEED_BASE;
+        currentSpawnRate = SPAWN_RATE_BASE;
+        spawnTimer = 0;
+        isPlaying = true;
+        
+        actualizarHUD();
+        crearAsteroide(); // Primer asteroide inmediato
+        actualizarBotonesRespuestas();
+        
+        if(animationId) cancelAnimationFrame(animationId);
+        gameLoop();
+    }
+
+    function salirJuego() {
         isPlaying = false;
+        if(animationId) cancelAnimationFrame(animationId);
+        cambiarPantalla('screen-dashboard');
+    }
+
+    function gameOver() {
+        isPlaying = false;
+        document.getElementById('answer-buttons').classList.add('opacity-0', 'pointer-events-none');
         document.getElementById('game-over').classList.remove('hidden');
         document.getElementById('final-score').textContent = score;
-        document.getElementById('answer-buttons').classList.add('opacity-0', 'pointer-events-none');
 
-        // LÓGICA DE SALÓN DE LA FAMA (RACHA)
-        const msgEl = document.getElementById('high-score-msg');
-        const imgEl = document.getElementById('game-over-img');
-        const titleEl = document.getElementById('game-over-title');
+        const highScoreMsg = document.getElementById('high-score-msg');
+        const gameOverImg = document.getElementById('game-over-img');
+        const gameOverTitle = document.getElementById('game-over-title');
 
         if (score > recordActual.puntaje) {
-            // ¡Nuevo récord!
-            recordActual = {
-                nombre: usuarioActual.nombre,
-                sede: usuarioActual.sede,
-                puntaje: score
-            };
+            // Nuevo Récord!
+            recordActual.puntaje = score;
+            recordActual.nombre = usuarioActual.nombre;
+            recordActual.sede = usuarioActual.sede;
+            actualizarUIHighscore();
             
-            msgEl.textContent = "¡NUEVO RÉCORD ÁGORA!";
-            msgEl.className = "text-2xl text-yellow-400 font-bold mb-8 h-8 drop-shadow-md animate-pulse";
-            
-            imgEl.src = "https://ui-avatars.com/api/?name=Campeon&background=F7931E&color=fff&size=150";
-            imgEl.className = "h-48 w-48 object-cover rounded-full border-4 border-yellow-400 shadow-[0_0_50px_rgba(250,204,21,0.8)] bg-white";
-            
-            titleEl.textContent = "¡Felicidades Campeón!";
-            titleEl.className = "title-font text-5xl mb-2 text-yellow-400 drop-shadow-lg";
-            
-            actualizarPodioUI(); // Actualizar el dashboard
+            highScoreMsg.textContent = "¡NUEVO RÉCORD DEL SALÓN DE LA FAMA!";
+            highScoreMsg.className = "text-2xl text-yellow-400 font-bold mb-8 h-8 drop-shadow-md animate-pulse";
+            gameOverImg.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(usuarioActual.nombre)}&background=8DAA25&color=fff&size=150`;
+            gameOverTitle.textContent = "¡Increíble!";
+            gameOverTitle.className = "title-font text-6xl mb-2 text-agora-green drop-shadow-lg";
+            crearExplosionNave(true); // Fuegos artificiales
         } else {
-            // No superó récord
-            msgEl.textContent = `Récord actual: ${recordActual.puntaje} pts (${recordActual.nombre})`;
-            msgEl.className = "text-lg text-gray-300 mb-8 h-8";
-            
-            imgEl.src = "https://ui-avatars.com/api/?name=Sigue+Practicando&background=929449&color=fff&size=150";
-            imgEl.className = "h-48 w-48 object-cover rounded-full border-4 border-gray-500 shadow-lg bg-white";
-            
-            titleEl.textContent = "¡Sigue practicando!";
-            titleEl.className = "title-font text-5xl mb-2 text-agora-orange drop-shadow-lg";
+            highScoreMsg.textContent = "";
+            gameOverImg.src = `https://ui-avatars.com/api/?name=Fin&background=ef4444&color=fff&size=150`;
+            gameOverTitle.textContent = "¡Misión Terminada!";
+            gameOverTitle.className = "title-font text-6xl mb-2 text-red-500 drop-shadow-lg";
         }
     }
 
-    function generarProblema() {
-        const tipo = Math.random() > 0.5 ? 'suma' : 'resta';
-        let num1, num2, texto;
+    // --- LÓGICA DE DIBUJO ---
+    function dibujarEscenaEstatica() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        dibujarEstrellas();
+        dibujarNave();
+    }
 
-        if (tipo === 'suma') {
-            num1 = Math.floor(Math.random() * 50) + 10;
-            num2 = Math.floor(Math.random() * 50) + 10;
-            respuestaCorrecta = num1 + num2;
-            texto = `${num1} + ${num2}`;
-        } else {
-            num1 = Math.floor(Math.random() * 100) + 20;
-            num2 = Math.floor(Math.random() * num1); 
-            respuestaCorrecta = num1 - num2;
-            texto = `${num1} - ${num2}`;
-        }
-
-        meteoritos.push({
-            x: Math.random() * (canvas.width - 200) + 100,
-            y: -60,
-            radius: 45,
-            text: texto,
-            speed: 0.8 + (score * 0.03) // Incremento sutil de dificultad
+    function dibujarEstrellas() {
+        ctx.fillStyle = 'white';
+        estrellas.forEach(star => {
+            ctx.globalAlpha = Math.random() * 0.5 + 0.3; // Titileo sutil
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+            ctx.fill();
         });
-
-        generarOpciones(respuestaCorrecta);
+        ctx.globalAlpha = 1;
     }
 
-    function generarOpciones(correcta) {
-        opcionesActuales = [correcta];
-        while (opcionesActuales.length < 3) {
-            let offset = Math.floor(Math.random() * 20) - 10;
-            if (offset === 0) offset = 5;
-            let falsa = correcta + offset;
-            if (!opcionesActuales.includes(falsa) && falsa >= 0) {
-                opcionesActuales.push(falsa);
+    function dibujarNave() {
+        ctx.save();
+        ctx.translate(nave.x, nave.y);
+        
+        // Fuego motor
+        if(isPlaying) {
+            ctx.fillStyle = Math.random() > 0.5 ? '#F7931E' : '#ef4444';
+            ctx.beginPath();
+            ctx.moveTo(-10, 20);
+            ctx.lineTo(10, 20);
+            ctx.lineTo(0, 20 + Math.random() * 20);
+            ctx.fill();
+        }
+
+        // Cuerpo principal
+        ctx.fillStyle = '#e2e8f0';
+        ctx.beginPath();
+        ctx.moveTo(0, -20);
+        ctx.lineTo(25, 20);
+        ctx.lineTo(-25, 20);
+        ctx.fill();
+
+        // Cabina
+        ctx.fillStyle = '#38bdf8';
+        ctx.beginPath();
+        ctx.moveTo(0, -10);
+        ctx.lineTo(10, 10);
+        ctx.lineTo(-10, 10);
+        ctx.fill();
+
+        // Alas
+        ctx.fillStyle = '#8DAA25';
+        ctx.beginPath();
+        ctx.moveTo(20, 10);
+        ctx.lineTo(35, 20);
+        ctx.lineTo(25, 20);
+        ctx.fill();
+        
+        ctx.beginPath();
+        ctx.moveTo(-20, 10);
+        ctx.lineTo(-35, 20);
+        ctx.lineTo(-25, 20);
+        ctx.fill();
+
+        ctx.restore();
+    }
+
+    function dibujarAsteroides() {
+        asteroides.forEach(ast => {
+            ctx.save();
+            ctx.translate(ast.x, ast.y);
+            
+            // Cuerpo rocoso
+            ctx.fillStyle = '#475569';
+            ctx.strokeStyle = '#334155';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            
+            // Dibujar forma irregular basada en su seed
+            for (let i = 0; i < ast.puntos; i++) {
+                const angle = (i / ast.puntos) * Math.PI * 2;
+                const r = ast.radio + ast.offsets[i];
+                if (i === 0) ctx.moveTo(Math.cos(angle) * r, Math.sin(angle) * r);
+                else ctx.lineTo(Math.cos(angle) * r, Math.sin(angle) * r);
+            }
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+            // Círculo interior para resaltar texto
+            ctx.fillStyle = 'rgba(0,0,0,0.5)';
+            ctx.beginPath();
+            ctx.arc(0, 0, ast.radio * 0.7, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Texto (Operación)
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 24px "Maven Pro"';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.shadowColor = 'black';
+            ctx.shadowBlur = 4;
+            ctx.fillText(ast.pregunta, 0, 0);
+            
+            ctx.restore();
+        });
+    }
+
+    function dibujarParticulas() {
+        particulas.forEach((p, index) => {
+            if (p.vida <= 0) {
+                particulas.splice(index, 1);
+                return;
+            }
+            ctx.save();
+            ctx.globalAlpha = p.vida / p.vidaMaxima;
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+            ctx.fill();
+            ctx.restore();
+            
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vida--;
+        });
+    }
+
+    // --- LÓGICA DE JUEGO ---
+    function generarProblemaMatematico() {
+        if (temaActualId === 'ar_1_2') {
+            // Lógica para Multiplicación y División
+            const esMultiplicacion = Math.random() > 0.5;
+            let num1, num2, respuesta;
+
+            if (esMultiplicacion) {
+                // Multiplicación con tablas del 2 al 12
+                num1 = Math.floor(Math.random() * 11) + 2;
+                num2 = Math.floor(Math.random() * 11) + 2;
+                respuesta = num1 * num2;
+                return { pregunta: `${num1} x ${num2}`, respuesta: respuesta };
+            } else {
+                // División exacta
+                respuesta = Math.floor(Math.random() * 11) + 2; // El cociente será entre 2 y 12
+                num2 = Math.floor(Math.random() * 11) + 2;      // El divisor será entre 2 y 12
+                num1 = respuesta * num2;                        // El dividendo
+                return { pregunta: `${num1} ÷ ${num2}`, respuesta: respuesta };
+            }
+        } else {
+            // Lógica por defecto (Adición y Sustracción - ar_1_1)
+            const esSuma = Math.random() > 0.5;
+            let num1, num2, respuesta;
+
+            if (esSuma) {
+                num1 = Math.floor(Math.random() * 20) + 1;
+                num2 = Math.floor(Math.random() * 20) + 1;
+                respuesta = num1 + num2;
+                return { pregunta: `${num1} + ${num2}`, respuesta: respuesta };
+            } else {
+                num1 = Math.floor(Math.random() * 20) + 10; // Asegurar que sea mayor
+                num2 = Math.floor(Math.random() * num1);
+                respuesta = num1 - num2;
+                return { pregunta: `${num1} - ${num2}`, respuesta: respuesta };
             }
         }
-        opcionesActuales.sort(() => Math.random() - 0.5);
-        renderizarBotonesRespuesta();
     }
 
-    function renderizarBotonesRespuesta() {
+    function generarOpciones(respuestaCorrecta) {
+        let opciones = [respuestaCorrecta];
+        while (opciones.length < 4) {
+            let variacion = Math.floor(Math.random() * 10) - 5; // -5 a +5
+            if (variacion === 0) variacion = 1;
+            let opcionFalsa = respuestaCorrecta + variacion;
+            if (opcionFalsa >= 0 && !opciones.includes(opcionFalsa)) {
+                opciones.push(opcionFalsa);
+            }
+        }
+        // Mezclar (Fisher-Yates)
+        for (let i = opciones.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [opciones[i], opciones[j]] = [opciones[j], opciones[i]];
+        }
+        return opciones;
+    }
+
+    function crearAsteroide() {
+        const prob = generarProblemaMatematico();
+        const opciones = generarOpciones(prob.respuesta);
+        const radioBase = 35;
+        
+        // Generar forma irregular
+        const puntos = 8;
+        const offsets = [];
+        for(let i=0; i<puntos; i++) {
+            offsets.push((Math.random() - 0.5) * 15);
+        }
+
+        asteroides.push({
+            x: Math.random() * (canvas.width - radioBase*2) + radioBase,
+            y: -50,
+            radio: radioBase,
+            puntos: puntos,
+            offsets: offsets,
+            pregunta: prob.pregunta,
+            respuesta: prob.respuesta,
+            opciones: opciones
+        });
+    }
+
+    function crearExplosion(x, y, colorBase) {
+        for(let i=0; i<20; i++) {
+            particulas.push({
+                x: x,
+                y: y,
+                vx: (Math.random() - 0.5) * 8,
+                vy: (Math.random() - 0.5) * 8,
+                size: Math.random() * 4 + 2,
+                color: Math.random() > 0.5 ? colorBase : '#ffffff',
+                vida: Math.random() * 20 + 10,
+                vidaMaxima: 30
+            });
+        }
+    }
+    
+    function crearExplosionNave(victoria = false) {
+        const colores = victoria ? ['#8DAA25', '#F7931E', '#ffffff'] : ['#ef4444', '#f97316', '#ffffff'];
+        for(let i=0; i<50; i++) {
+            particulas.push({
+                x: nave.x + (Math.random() - 0.5)*40,
+                y: nave.y + (Math.random() - 0.5)*20,
+                vx: (Math.random() - 0.5) * 15,
+                vy: (Math.random() - 0.5) * 15 - (victoria ? 5 : 0),
+                size: Math.random() * 6 + 2,
+                color: colores[Math.floor(Math.random() * colores.length)],
+                vida: Math.random() * 40 + 20,
+                vidaMaxima: 60
+            });
+        }
+    }
+
+    function obtenerAsteroideObjetivo() {
+        // Devuelve el asteroide más bajo (el más cercano a la nave)
+        if (asteroides.length === 0) return null;
+        return asteroides.reduce((prev, curr) => (prev.y > curr.y) ? prev : curr);
+    }
+
+    function actualizarBotonesRespuestas() {
+        const objetivo = obtenerAsteroideObjetivo();
         const contenedor = document.getElementById('answer-buttons');
         contenedor.innerHTML = '';
-        opcionesActuales.forEach(opcion => {
+
+        if (!objetivo || !isPlaying) return;
+
+        objetivo.opciones.forEach(opcion => {
             const btn = document.createElement('button');
-            // Usando colores de Agora (Naranja para botones)
-            btn.className = "flex-1 bg-agora-orange hover:bg-[#e08216] border-2 border-[#ffb359] text-white title-font text-3xl py-5 md:py-6 rounded-2xl shadow-[0_8px_0_#b5660b] active:shadow-[0_0px_0_#b5660b] active:translate-y-[8px] transition-all pointer-events-auto font-bold";
+            btn.className = "bg-white border-b-4 border-gray-300 hover:bg-gray-50 text-gray-800 title-font text-3xl font-bold py-3 px-6 md:px-8 rounded-xl shadow-lg transform transition-transform active:translate-y-1 active:border-b-0 min-w-[80px]";
             btn.textContent = opcion;
             btn.onclick = () => verificarRespuesta(opcion);
             contenedor.appendChild(btn);
         });
     }
 
-    function verificarRespuesta(seleccion) {
+    function verificarRespuesta(respuestaElegida) {
         if (!isPlaying) return;
+        const objetivo = obtenerAsteroideObjetivo();
+        if (!objetivo) return;
 
-        if (seleccion === respuestaCorrecta) {
-            // Correcto
-            if (meteoritos.length > 0) {
-                crearExplosion(meteoritos[0].x, meteoritos[0].y, '#8DAA25'); // Verde Agora
-                meteoritos.shift(); 
-                score += 10;
-                actualizarHUD();
-                setTimeout(generarProblema, 400); 
-            }
+        if (respuestaElegida === objetivo.respuesta) {
+            // Correcto!
+            score += 10;
+            crearExplosion(objetivo.x, objetivo.y, '#8DAA25');
+            
+            // Remover asteroide
+            const index = asteroides.indexOf(objetivo);
+            if (index > -1) asteroides.splice(index, 1);
+            
+            // Aumentar dificultad levemente
+            currentSpeed += 0.05;
+            if (currentSpawnRate > 60) currentSpawnRate -= 2;
+            
         } else {
             // Incorrecto
             lives--;
-            crearExplosion(playerBase.x, playerBase.y - 30, '#ef4444'); // Rojo error
-            actualizarHUD();
+            crearExplosion(objetivo.x, objetivo.y, '#ef4444');
+            // Castigo visual agitando pantalla (simplificado)
+            canvas.style.transform = "translateX(5px)";
+            setTimeout(() => canvas.style.transform = "translateX(-5px)", 50);
+            setTimeout(() => canvas.style.transform = "translateX(0)", 100);
             
-            const btnContainer = document.getElementById('answer-buttons');
-            btnContainer.classList.add('animate-bounce');
-            setTimeout(() => btnContainer.classList.remove('animate-bounce'), 500);
+            if (lives <= 0) {
+                crearExplosionNave();
+                gameOver();
+            }
         }
-    }
-
-    function crearExplosion(x, y, color) {
-        for(let i=0; i<25; i++){
-            particulas.push({
-                x: x, y: y,
-                vx: (Math.random() - 0.5) * 10,
-                vy: (Math.random() - 0.5) * 10,
-                life: 1.0,
-                color: color,
-                size: Math.random() * 4 + 2
-            });
-        }
-    }
-
-    function dibujarEscenaEstatica() {
-        // Fondo (cielo nocturno)
-        ctx.fillStyle = '#0f172a';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        // Estrellas
-        ctx.fillStyle = 'rgba(255,255,255,0.8)';
-        for(let i=0; i<80; i++) {
-            ctx.beginPath();
-            ctx.arc(Math.random()*canvas.width, Math.random()*canvas.height, Math.random()*2, 0, Math.PI*2);
-            ctx.fill();
-        }
-
-        // Nave Ágora
-        // Cuerpo principal (Verde Agora)
-        ctx.fillStyle = '#8DAA25';
-        ctx.beginPath();
-        ctx.moveTo(playerBase.x, playerBase.y - 35); // Punta
-        ctx.lineTo(playerBase.x - playerBase.width/2, playerBase.y + playerBase.height/2); // Ala Izq
-        ctx.lineTo(playerBase.x + playerBase.width/2, playerBase.y + playerBase.height/2); // Ala Der
-        ctx.fill();
-        
-        // Detalles Nave (Naranja Agora)
-        ctx.fillStyle = '#F7931E';
-        ctx.beginPath();
-        ctx.arc(playerBase.x, playerBase.y + 5, 12, 0, Math.PI*2);
-        ctx.fill();
-
-        // Propulsores
-        ctx.fillStyle = '#ef4444';
-        ctx.beginPath();
-        ctx.moveTo(playerBase.x - 15, playerBase.y + playerBase.height/2);
-        ctx.lineTo(playerBase.x, playerBase.y + playerBase.height);
-        ctx.lineTo(playerBase.x + 15, playerBase.y + playerBase.height/2);
-        ctx.fill();
+        actualizarHUD();
+        actualizarBotonesRespuestas();
     }
 
     function gameLoop() {
-        if(!isPlaying) return;
+        if (!isPlaying) return;
 
-        dibujarEscenaEstatica();
+        // Actualizar estrellas
+        estrellas.forEach(star => {
+            star.y += star.speed;
+            if(star.y > canvas.height) {
+                star.y = 0;
+                star.x = Math.random() * canvas.width;
+            }
+        });
 
-        ctx.font = "bold 24px 'Maven Pro', sans-serif";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-
-        // Meteoritos
-        for (let i = 0; i < meteoritos.length; i++) {
-            let m = meteoritos[i];
-            m.y += m.speed;
-
-            // Halo del meteorito
-            const grad = ctx.createRadialGradient(m.x, m.y, m.radius/2, m.x, m.y, m.radius*1.2);
-            grad.addColorStop(0, '#f87171');
-            grad.addColorStop(1, 'transparent');
-            ctx.fillStyle = grad;
-            ctx.beginPath();
-            ctx.arc(m.x, m.y, m.radius*1.2, 0, Math.PI*2);
-            ctx.fill();
-
-            // Cuerpo del meteorito (Olivo oscuro)
-            ctx.fillStyle = '#4a4c25'; 
-            ctx.beginPath();
-            ctx.arc(m.x, m.y, m.radius, 0, Math.PI*2);
-            ctx.fill();
+        // Actualizar asteroides
+        let asteroideImpacto = false;
+        asteroides.forEach((ast, index) => {
+            ast.y += currentSpeed;
+            // Rotación simulada si quisiéramos, pero por ahora solo caen
             
-            ctx.strokeStyle = '#929449'; // Agora Olive
-            ctx.lineWidth = 4;
-            ctx.stroke();
+            // Colisión con base
+            if (ast.y + ast.radio >= nave.y - nave.height/2) {
+                asteroideImpacto = true;
+                crearExplosion(ast.x, ast.y, '#ef4444');
+                asteroides.splice(index, 1);
+            }
+        });
 
-            // Texto de la operación
-            ctx.fillStyle = 'white';
-            ctx.shadowColor = "black";
-            ctx.shadowBlur = 4;
-            ctx.fillText(m.text, m.x, m.y);
-            ctx.shadowBlur = 0; // reset
-
-            // Colisión con la base
-            if (m.y + m.radius > canvas.height - 70) { 
-                crearExplosion(m.x, m.y, '#F7931E'); // Naranja explosion
-                meteoritos.splice(i, 1);
-                i--;
-                lives--;
-                actualizarHUD();
-                if(lives > 0) setTimeout(generarProblema, 400);
+        if (asteroideImpacto) {
+            lives--;
+            actualizarHUD();
+            actualizarBotonesRespuestas();
+            // Castigo visual
+            canvas.style.transform = "translateY(5px)";
+            setTimeout(() => canvas.style.transform = "translateY(0)", 100);
+            
+            if (lives <= 0) {
+                crearExplosionNave();
+                gameOver();
+                return; // Cortar loop
             }
         }
 
-        // Partículas
-        for (let i = 0; i < particulas.length; i++) {
-            let p = particulas[i];
-            p.x += p.vx;
-            p.y += p.vy;
-            p.life -= 0.04;
-
-            ctx.globalAlpha = Math.max(0, p.life);
-            ctx.fillStyle = p.color;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
-            ctx.fill();
-            ctx.globalAlpha = 1.0;
-
-            if (p.life <= 0) {
-                particulas.splice(i, 1);
-                i--;
+        // Spawner
+        spawnTimer++;
+        if (spawnTimer >= currentSpawnRate) {
+            crearAsteroide();
+            spawnTimer = 0;
+            // Solo actualizamos botones si se acaba de crear y es el único (o el más bajo)
+            if(asteroides.length === 1) {
+                actualizarBotonesRespuestas();
             }
         }
 
-        gameLoopId = requestAnimationFrame(gameLoop);
+        // DIBUJAR
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        dibujarEstrellas();
+        dibujarAsteroides();
+        dibujarParticulas();
+        dibujarNave();
+
+        animationId = requestAnimationFrame(gameLoop);
     }
-
-    // Inicialización
-    window.onload = () => {
-        dibujarEscenaEstatica();
-    };
 
 </script>
 </body>
